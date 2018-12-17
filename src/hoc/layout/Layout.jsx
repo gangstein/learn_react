@@ -8,24 +8,25 @@ export default class Layout extends Component {
 		menu: false
 	};
 
-	toggleMenuHandler = () => [
+	toggleMenuHandler = () => {
 		this.setState({
 			menu: !this.state.menu
-		})
-	];
+		});
+	};
 
-	hiddenMenuHandler = () => [
+	hiddenMenuHandler = () => {
 		this.setState({
 			menu: false
-		})
-	];
+		});
+	};
+
 
 	render() {
 
 		return (
 			<div className={classes.Layout}>
-				<Drawer isOpen={this.state.menu}
-				        onClose={this.hiddenMenuHandler}/>
+				<Drawer onClose={this.hiddenMenuHandler}
+				        isOpen={this.state.menu}/>
 				<MenuToggle onToggle={this.toggleMenuHandler}
 				            isOpen={this.state.menu}/>
 				<main>
