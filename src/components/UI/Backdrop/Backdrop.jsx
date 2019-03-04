@@ -2,6 +2,8 @@ import React            from "react";
 import { TimelineLite } from "gsap";
 import "./Backdrop..scss";
 
+const duration = 200;
+
 class Backdrop extends React.Component {
 	constructor(props) {
 		super(props);
@@ -9,19 +11,25 @@ class Backdrop extends React.Component {
 	}
 
 	componentDidMount() {
-		new TimelineLite({ onComplete: () => console.log("enter") })
-			.to(this.inputRef, 0.2, { autoAlpha: 1 });
+		this.LineEnter = new TimelineLite();
+		this.LineEnter
+			.to(this.inputRef, duration / 1000, { autoAlpha: 1 });
+		this.LineEnter.play();
 	}
+
+	onClose = (close) => () => {
+		this.LineEnter.reverse();
+		setTimeout(() => {
+			close();
+		}, duration);
+	};
 
 	render() {
 		return (
 			<div
 				className='Backdrop'
 				ref={div => this.inputRef = div}
-				onClick={() => {
-					new TimelineLite({ onComplete: () => this.props.onClose() })
-						.to(this.inputRef, 0.2, { autoAlpha: 0 });
-				}}
+				onClick={this.onClose(this.props.onClose)}
 			/>
 		);
 	}
