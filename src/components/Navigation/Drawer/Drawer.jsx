@@ -26,6 +26,7 @@ export default class Drawer extends Component {
         {this.props.isOpen ? <Backdrop onClose={this.props.onClose} /> : null}
         <nav className={cls.join(" ")}>
           <ul>{this.renderLinks()}</ul>
+          <div>test</div>
         </nav>
       </Fragment>
     );
