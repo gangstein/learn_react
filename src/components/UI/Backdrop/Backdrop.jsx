@@ -14,7 +14,6 @@ class Backdrop extends React.Component {
 		this.LineEnter = new TimelineLite();
 		this.LineEnter.to(this.inputRef, duration / 1000, { autoAlpha: 1 });
 		this.LineEnter.play();
-
 	}
 
 	onClose = close => () => {
